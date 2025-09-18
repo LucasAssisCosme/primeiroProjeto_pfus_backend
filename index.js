@@ -1,30 +1,48 @@
+// diz  que precisa do expresse
 const express = require('express')
 
+//fala que o app é o express
 const app = express()
 
+//Diz qual a porta para ele acessa
 const port = 5000
 
+//Diz o caminho que vai seguir
 const path = require('path')
+//Junta o dirname com alguma palavra que exista dentro do doc
 const caminho = path.join(__dirname, "views")
 
+//Importações
+// Importação roda dos usuarios 
+const userRouters = require("./routes/userRoutes")
 
+// interpretador de jason , para tratar as informações do body
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 
+//Cria uma rota principal para as sub rotas de usuario 
+//useRoutes diz as rotas possiveis para ele usar
+app.use("/usuarios", userRouters)
+
+//Definido o ejs como templante engine
+app.set('view engine', 'ejs')
+
+// Definindo 'Atalho' onde buscar as views
+app.set("views", path.join(__dirname, "views"))
+
+//Manda a pessoa para o index.ejs com /home
 app.get("/home", (req,res) => {
     res.status(200)
-    res.sendFile(`${caminho}/index.html`)
+    res.render("index")
 })
 
-app.get("/pokemon", (req, res) => {
-    res.status(200)
-    res.send("Arceus")
-})
-
+// caso digite uma rota que não existe, leva para 404.ejs
 app.use((req, res) => {
     res.status(404)
-    res.sendFile(`${caminho}/404.html`)
+    res.render("404")
 })
 
-//Pegar a mensagem com o nome da rota
+//Rota inicial do projeto
 app.get("/", (req,res) => {
     res.status(200).send("Ola, parabens conseguiu")
 })
