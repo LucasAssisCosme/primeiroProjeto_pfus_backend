@@ -30,7 +30,7 @@ module.exports = {
     //Crud
     //Responde a requisição mostrando a visualização da tela de cadastro
     formCadastro: (req,res) => {
-      res.render("cadastro")
+      res.render("Entrando")
     },
     //FUnção para levar dados preenchidos para o model realizar o cadastro
     salvarUsuario: (req,res) => {

@@ -1,18 +1,10 @@
 const db = require("../data/db.json")
+const { deletar } = require("./userModel")
 
 let listaProdutos = db.produtos
 
 module.exports = {
-    //Função para validar o login 
-    login : (nome, preco) => { 
-        //Login
-        // Busca a lista de usuarios, se tem aquele usuario com as informações que ele me passou
-        let agoraProduto = listaProdutos.find(
-            (produto) => produto.nome === nome && produto.preco == preco) || null
-
-            return agoraProduto
-     },
- salvar: ({nome, descricao, preco, quantidade, categoria}) => {
+ guardar: ({nome, descricao, preco, quantidade, categoria}) => {
           const novoProduto = {
                id: listaProdutos.length + 1,
                nome,
@@ -48,12 +40,12 @@ module.exports = {
             listaProdutos: nome || listaProdutos[index].nome,
             listaProdutos: preco || listaProdutos[index].preco,
             listaProdutos: quantidade || listaProdutos[index].quatidade,
-            listaProdutos: categoria || listaProdutos[index].categoria,
+            listaProdutos: categoria || listaProdutos[index].categoria
            }
            //Retorna usuario atualizado 
            return listaProdutos[index]
       },
-      Apagar: (id) => {
+      deletar: (id) => {
            const index = listaProdutos.findIndex((produto) => produto.id == id)
            if(index === -1) return false
            listaProdutos.splice(index,1);

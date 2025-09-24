@@ -15,6 +15,7 @@ const caminho = path.join(__dirname, "views")
 //Importações
 // Importação roda dos usuarios 
 const userRouters = require("./routes/userRoutes")
+const produtosRoutes = require("./routes/produtosRoutes")
 
 // interpretador de jason , para tratar as informações do body
 app.use(express.urlencoded({extended:true}))
@@ -23,6 +24,7 @@ app.use(express.json())
 //Cria uma rota principal para as sub rotas de usuario 
 //useRoutes diz as rotas possiveis para ele usar
 app.use("/usuarios", userRouters)
+app.use("/produtos", produtosRoutes)
 
 //Definido o ejs como templante engine
 app.set('view engine', 'ejs')
