@@ -18,6 +18,33 @@
             "email": "kylerayner@gmail.com",
             "senha": "55"
         }
-    ]
+    ],
 
+
+    "produtos" :[
+        {
+            "id": 10,
+            "nome": "Geladeira",
+            "descricao": "Geladeira 10 de 10",
+            "preco": 130.65,
+            "quatidade": 54,
+            "categoria": "Eletrodomesticos"
+        },
+        {
+             "id": 16,
+            "nome": "Chocolate",
+            "descricao": "Delicia",
+            "preco": 34.90,
+            "quatidade": 100,
+            "categoria": "Doces"
+        },
+        {
+             "id": 7,
+            "nome": "Camisa CR7",
+            "descricao": "O milhor",
+            "preco": 7777.77,
+            "quatidade": 7,
+            "categoria": "Roupas"
+        }
+    ]
 }
