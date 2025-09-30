@@ -35,19 +35,18 @@ app.set("views", path.join(__dirname, "views"))
 //Manda a pessoa para o index.ejs com /home
 app.get("/home", (req,res) => {
     res.status(200)
-    res.render("index")
+    res.render("index", { titulo: "Pagina inicial"})
 })
-
+//Rota inicial do projeto
+app.get("/", (req,res) => {
+    res.status(200).render("index", { titulo: "Pagina inicial"})
+})
 // caso digite uma rota que não existe, leva para 404.ejs
 app.use((req, res) => {
     res.status(404)
-    res.render("404")
+    res.render("404", { titulo: "Pagina de erro"})
 })
 
-//Rota inicial do projeto
-app.get("/", (req,res) => {
-    res.status(200).send("Ola, parabens conseguiu")
-})
 //Coloca o servidor para funcionar
 app.listen(port, () => {
     console.log(`Servidor funcionando em http://localhost:${port}`);
