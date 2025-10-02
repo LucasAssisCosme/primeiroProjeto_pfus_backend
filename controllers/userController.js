@@ -9,7 +9,7 @@ module.exports = {
     //Responde a requisição mostrando a visualização da tela de login 
     formLogin : (req, res) => {
         res.status(200)
-        res.render("login")
+        res.render("login", { titulo: "login"})
     },
     // Função para levar os dados preenchidos para model realizar o login
     loginUsuario  : (req, res) => {
