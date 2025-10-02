@@ -30,6 +30,11 @@
   -->
 
         <!-- Criando formulario de login  -->
+
+        <!-- 
+    Início de um formulário que envia os dados para a rota /usuarios/login
+    usando o método POST (dados enviados de forma segura, sem aparecer na URL).
+  -->
         <form action="/usuarios/login" method="POST">
             <!-- caixinha de email  -->
             <label for="inputEmail" class="form-label fs-2 mt-2"> Email </label>
@@ -48,10 +53,15 @@
             <button type="submit" class="btn btn-primary btn-lg mt-5"> Entrar </button>
 
         </form>
-        <!-- caixinha de alerta -->
-         <div class="alert alert-danger text-center mx-auto mt-3" style="width: 50%;">
+         <!-- caixinha de alertase ele errar o login -->
+        <% if (typeof erro !== "undefined") { %>
+           <div class="alert alert-danger text-center mx-auto mt-3" style="width: 50%;">
              usuario ou senha invalidos
          </div>
+        <% } %>
+         
+        
+         
     </main>
 
     <footer></footer>

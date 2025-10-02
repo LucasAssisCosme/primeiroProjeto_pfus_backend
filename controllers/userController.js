@@ -20,11 +20,13 @@ module.exports = {
 
       //Se não conseguiu logar, manda mensagem de erro
       if(!logado){
-        return res.status(401).json({mensagem: "Usuario ou senha invalidos"})
+        res.status(401)
+        res.render("login", {titulo: "Login errado", erro: "Email ou senha inválidos"})
       }
       //se conseguiu manda mensagem de confirmação 
       else{
-        res.json({mensagem: "Login realizado "})
+        res.status(200)
+        res.render("index", { titulo: "Bem vindo", usuario: logado.nome})
       }
     },
     //Crud
