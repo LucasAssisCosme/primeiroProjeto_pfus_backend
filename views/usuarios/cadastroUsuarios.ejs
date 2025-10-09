@@ -1,0 +1,50 @@
+<!-- Cabecalho principal -->
+<%- include('../partials/header') %>
+
+    <!-- conteudo do index -->
+    <main class="container d-flex flex-column flex-fill justify-content-center">
+        <h1 class="text-center">PAGINA DE CADASTRO DE USUARIOS</h1>
+        <form action="/usuarios/cadastrar" method="POST">
+            <div class="mb-3">
+                <!-- caixinha nome de usuario -->
+                <label for="inputNome" class="form-label fs-2 mt-2">
+                    Usuario
+                </label>
+                <input type="text" id="inputNome" class="form-control form-control-lg" placeholder="Digite um usuario"
+                    name="usuario" required>
+                <!-- fim da caixinha nome de usuario -->
+
+                <!-- Caixinha email -->
+                <label for="inputEmail" class="form-label fs-2 mt-2">
+                    Email
+                </label>
+                <input type="email" id="inputEmail" class="form-control form-control-lg" placeholder="Digite um email"
+                    name="email" required>
+                <!-- fim caixinha email -->
+
+                <!-- Caixinha senha -->
+                <label for="inputSenha" class="form-label fs-2 mt-2">
+                    Senha
+                </label>
+                <input type="password" id="inputSenha" class="form-control form-control-lg"
+                    placeholder="DIgite uma senha" name="senha" required>
+                <!-- fim caixinha senha -->
+                <!-- Caixinha de tipo -->
+                <label class="form-label fs-2 mt-2">
+                    tipo de usuario
+                </label>
+                <select name="tipo" class="form-select form-select-lg">
+                    <option value="Funcionario"> Funcionario</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Administrador"> Administrador</option>
+                </select>
+                <!-- fim caixinha de tipo -->
+
+                <!-- botao enviar formulario -->
+                <button type="submit" class="btn btn-lg btn-primary"> Cadastra </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Rodape de todas as paginas -->
+    <%- include('../partials/footer') %>

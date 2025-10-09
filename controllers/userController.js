@@ -32,13 +32,18 @@ module.exports = {
     //Crud
     //Responde a requisição mostrando a visualização da tela de cadastro
     formCadastro: (req,res) => {
-      res.render("Entrando")
+      res.render("usuarios/cadastroUsuarios", {titulo: "Cadastro"}) 
     },
     //FUnção para levar dados preenchidos para o model realizar o cadastro
     salvarUsuario: (req,res) => {
-      const {usuario, email, senha} = req.body
-      userModel.salvar({usuario, email, senha})
-      res.render("cadastroConfirmado")
+      const {usuario, email, senha, tipo} = req.body
+      usuarioNovo = userModel.salvar({usuario, email, senha, tipo})
+      res.render("usuarios/confirmacaoUsuario", {
+        tipo: "cadastro",
+        titulo: "Cadastro confirmado",
+        usuarioNovo
+      })
+    
     },
     // R
     //Função Mostrar os usuarios

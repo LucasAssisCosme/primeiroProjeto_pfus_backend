@@ -17,18 +17,20 @@ module.exports = {
      //Crud
      // Função para cadastro o novo usuario 
      //Ta em chaves por ser um objeto
-     salvar: ({usuario,email,senha}) => {
+     salvar: ({ usuario, email, senha, tipo}) => {
           const novoUsuario = {
                id: listaUsuarios.length + 1,
                usuario,
                email,
-               senha
+               senha,
+               tipo
           }
           listaUsuarios.push(novoUsuario)
           console.log("Novo usuario salvo: ", novoUsuario);
           return novoUsuario
           
      },
+     
      //Busca todos os usuarios pelo banco
      listarTodos: () => {
         return listaUsuarios
