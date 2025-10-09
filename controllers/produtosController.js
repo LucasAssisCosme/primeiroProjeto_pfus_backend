@@ -10,13 +10,17 @@ module.exports = {
     //Crud
     //Responde a requisição mostrando a visualização da tela de cadastro
     produtoCadastro: (req,res) => {
-      res.render("Entrando")
+      res.render("produtos/cadastroProduto", {titulo:"Cadastro"})
     },
     //FUnção para levar dados preenchidos para o model realizar o cadastro
     salvarProduto: (req,res) => {
-      const {nome, descricao, preco, quantidade, categoria} = req.body
-      produtosModel.guardar({nome, descricao, preco, quantidade, categoria})
-      res.render("listagem")
+      const {nome, descricao, preco, quantidade, categoria, imagem} = req.body
+      produtoNovo = produtosModel.guardar({nome, descricao, preco, quantidade, categoria, imagem})
+      res.render("produtos/confirmaProdutos", {
+        tipo: "cadastro",
+        titulo: "Cadastro confirmado",
+        produtoNovo
+      })
     },
     // R
     //Função Mostrar os usuarios

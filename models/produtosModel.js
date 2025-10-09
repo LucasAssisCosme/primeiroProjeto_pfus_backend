@@ -4,14 +4,15 @@ const { deletar } = require("./userModel")
 let listaProdutos = db.produtos
 
 module.exports = {
- guardar: ({nome, descricao, preco, quantidade, categoria}) => {
+ guardar: ({nome, descricao, preco, quantidade, categoria, imagem}) => {
           const novoProduto = {
                id: listaProdutos.length + 1,
                nome,
                descricao,
                preco,
                quantidade,
-               categoria
+               categoria,
+               imagem 
                
           }
          listaProdutos.push(novoProduto)
