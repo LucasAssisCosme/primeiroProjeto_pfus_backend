@@ -32,6 +32,8 @@ app.set('view engine', 'ejs')
 // Definindo 'Atalho' onde buscar as views
 app.set("views", path.join(__dirname, "views"))
 
+app.use(express.static('public'))
+
 //Manda a pessoa para o index.ejs com /home
 app.get("/home", (req,res) => {
     res.status(200)

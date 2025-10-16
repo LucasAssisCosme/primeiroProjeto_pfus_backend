@@ -48,9 +48,12 @@ module.exports = {
     // R
     //Função Mostrar os usuarios
     listarUsuarios: (req,res) => {
+      // Guarda a lista de usuarios, que o model mandou depois que buscou no banco
       const usuarios = userModel.listarTodos()
-      res.json(usuarios);
-      //res.render("Usuarios",{ usuarios })
+       //mostra a tela de lista para pessoa, mandando a variavel como parametro 
+      res.render("usuarios/listaUsuarios",
+         { usuarios, titulo: "Lista de usuarios" })
+      
     },
     //Função Mostrar so um usuario
     //Req sempre vem primeiro e res depois
