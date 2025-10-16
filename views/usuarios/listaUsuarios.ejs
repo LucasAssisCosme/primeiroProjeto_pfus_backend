@@ -46,10 +46,13 @@
                             </a>
                             <!-- Botão de excluir -->
                              <a href="#">
-                         <button class="btn btn-sm btn-danger me-2">
-                                <i class="bi bi-trash3"></i>  
-                                  Excluir
-                            </button>
+                    <button 
+                    class="btn btn-sm btn-danger me-2"
+                    onclick= "confirmaExclusao('<%= usuario.usuario %>', '<%= usuario.id %>')"
+                    >
+                        <i class="bi bi-trash3"></i>  
+                            Excluir
+                    </button>
                             </a>
                         </td>
                     </tr>
@@ -62,6 +65,16 @@
               Nenhum usuário cadastrado no momento.
            </div>
     <% } %>
+    <!-- criação de script função deletar -->
+     <script>
+        function confirmaExclusao(nomeUsuario, id){
+            if(confirm(`Deseja realmente excluir usuario ${nomeUsuario}`)){
+                window.location.href = `/usuarios/deletar/${id}`
+
+            }
+            
+        }
+     </script>
 </main>
 
 <!-- Rodape de todas as paginas -->
