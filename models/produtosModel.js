@@ -4,11 +4,11 @@ const { deletar } = require("./userModel")
 let listaProdutos = db.produtos
 
 module.exports = {
- guardar: ({nome, descricao, preco, quantidade, categoria, imagem}) => {
+ guardar: ({nome,  descricao, preco, quantidade, categoria, imagem}) => {
           const novoProduto = {
                id: listaProdutos.length + 1,
                nome,
-               descricao,
+              descricao,
                preco,
                quantidade,
                categoria,
@@ -40,7 +40,7 @@ module.exports = {
             listaProdutos: descricao || listaProdutos[index].descricao,
             listaProdutos: nome || listaProdutos[index].nome,
             listaProdutos: preco || listaProdutos[index].preco,
-            listaProdutos: quantidade || listaProdutos[index].quatidade,
+            listaProdutos: quantidade || listaProdutos[index].quantidade,
             listaProdutos: categoria || listaProdutos[index].categoria
            }
            //Retorna usuario atualizado 

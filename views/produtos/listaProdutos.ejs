@@ -1,0 +1,65 @@
+<%- include('../partials/header') %>
+
+  <main class="container text-center mt-3">
+    <h1>Lista Produtos</h1>
+    <a href="/produtos/cadastrar">
+      <button class="btn btn-lg btn-primary">
+        <!-- Utilizando icone do bootstrap -->
+        <i class="bi bi-plus-circle"></i>
+        Produto
+      </button>
+    </a>
+    <div class="d-flex flex-wrap flex-row gap-3 mt-5">
+    <% if (osProdutos && osProdutos.length> 0) { %>
+
+      <% osProdutos.forEach((produto)=> { %>
+        <div class="card" style="width: 18rem;">
+          <img src="<%= produto.imagem %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= produto.nome %>
+            </h5>
+            <p class="card-text"> <strong>Descrição:</strong> <%= produto.descricao %></p>
+            <p class="card-text"> <strong>Tipo:</strong> <%= produto.categoria %></p>
+            <p class="card-text"> <strong>Preço:</strong> <%= produto.preco %></p>
+            <p class="card-text"> <strong>Quantidade:</strong> <%= produto.quantidade %></p>
+            <a href="/produtos/<%= produto.id %>">
+                            <button class="btn btn-sm btn-warning me-2">
+                                <i class="bi bi-pencil-square"></i>  
+                                Editar
+                            </button>
+                            </a>
+                            <!-- Botão de excluir -->
+                             <a href="#">
+                    <button 
+                    class="btn btn-sm btn-danger me-2"
+                    onclick= "confirmaExclusao('<%= produto.nome %>', '<%= produto.id %>')"
+                    >
+                        <i class="bi bi-trash3"></i>  
+                            Excluir
+                    </button>
+                            </a>
+          </div>
+        </div>
+       
+
+        <% }) %>
+
+          <% } else { %>
+             <div class="alert alert-warning text-center mt-5">
+              Nenhum usuário cadastrado no momento.
+           </div>
+            <% } %>
+ </div>
+    <script>
+        function confirmaExclusao(nomeProduto, id){
+            if(confirm(`Deseja realmente excluir produto ${nomeProduto}`)){
+                window.location.href = `/produto/deletar/${id}`
+
+            }
+            
+        }
+     </script>
+  </main>
+
+  <%- include('../partials/footer') %>

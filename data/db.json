@@ -26,28 +26,41 @@
 
     "produtos" :[
         {
-            "id": 10,
+            "id": 1,
             "nome": "Geladeira",
             "descricao": "Geladeira 10 de 10",
             "preco": 130.65,
             "quatidade": 54,
-            "categoria": "Eletrodomesticos"
+            "categoria": "Brinquedo",
+            "imagem": "https://m.media-amazon.com/images/I/41FhtTDaN0L._UF894,1000_QL80_.jpg"
+
         },
         {
-             "id": 16,
+             "id": 2,
             "nome": "Chocolate",
             "descricao": "Delicia",
             "preco": 34.90,
-            "quatidade": 100,
-            "categoria": "Doces"
+            "quantidade": 100,
+            "categoria": "Alimento",
+            "imagem": "https://www.cacaushow.com.br/on/demandware.static/-/Sites-masterCatalog_CacauShow/default/dw6614188b/large/1002603_1.png"
         },
         {
-             "id": 7,
+             "id": 3,
             "nome": "Camisa CR7",
             "descricao": "O milhor",
             "preco": 7777.77,
-            "quatidade": 7,
-            "categoria": "Roupas"
+            "quantidade": 7,
+            "categoria": "Futebol",
+            "imagem": "https://http2.mlstatic.com/D_NQ_NP_992458-MLB53895218743_022023-O-camisa-cristiano-ronaldo-cr7-portugal-vermelha-e-verde.webp"
+        },
+         {
+             "id": 3,
+            "nome": "Pão de queijo",
+            "descricao": "Delicia",
+            "preco": 7.90,
+            "quantidade": 7,
+            "categoria": "Aliemento",
+            "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGdt_gMXmSj7Hbr14GwbBq9q4qf91JimRH2w&s"
         }
     ]
 }

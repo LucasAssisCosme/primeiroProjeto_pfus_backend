@@ -26,8 +26,8 @@ module.exports = {
     //Função Mostrar os usuarios
     listarProdutos: (req,res) => {
       const osProdutos = produtosModel.listarGeral()
-      res.json(osProdutos);
-      //res.render("Usuarios",{ usuarios })
+      res.render("produtos/listaProdutos",
+        {osProdutos, titulo: "Lista de produtos"})
     },
     //Função Mostrar so um usuario
     //Req sempre vem primeiro e res depois
@@ -39,7 +39,7 @@ module.exports = {
       const aquelesProdutos = produtosModel.irPorid(id)
       //se não achar, avisa que deu erro
       if(!aquelesProdutos){
-        return res.status(404).json({mensagem: "Usuário não encontrado"})
+        return res.status(404).json({mensagem: "Produto não encontrado"})
       }
       //se achar, devolve as informações via json
       res.json(aquelesProdutos)
