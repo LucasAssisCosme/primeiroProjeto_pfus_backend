@@ -39,26 +39,40 @@ module.exports = {
       const aquelesProdutos = produtosModel.irPorid(id)
       //se não achar, avisa que deu erro
       if(!aquelesProdutos){
-        return res.status(404).json({mensagem: "Produto não encontrado"})
+        return res.status(404).render("produtos/erroProdutos", {
+          titulo: "Erro",
+          mensagem: "Produto não encontrado"
+        })
+      
       }
       //se achar, devolve as informações via json
-      res.json(aquelesProdutos)
+      res.render("produtos/editarProdutos", {
+        titulo: "Editar",
+        aquelesProdutos
+      })
     },
     //Função para atualizar informações de um usuario
     atualizarProdutos: (req,res) => {
        //Buscar id vindo de url como parametro
       const id = req.params.id;
       //Buscar as novas informações para atualizar 
-      const {nome, descricao, preco, quantidade, categoria} = req.body
+      const {nome, descricao, preco, quantidade, categoria, imagem} = req.body
        //Guarda o usuario atualizado numa variavel 
-      const produtoAtualizado = produtosModel.Renovar(id, {nome, descricao, preco, quantidade, categoria})
+      const produtoAtualizado = produtosModel.Renovar(id, {nome, descricao, preco, quantidade, categoria, imagem})
 
       //se não achar, avisa que deu erro
       if(!produtoAtualizado){
-        return res.status(404).json({mensagem: "Produto não encontrado"})
+        return res.status(404).render("produtos/erroProdutos", {
+          titulo: "Erro",
+          mensagem: "Não foi possivel atuzalizar"
+        })
       }
       //se atualizar, manda uma mensagem dizendo que deu certo 
-      res.json({mensagem: "Produto foi atualizado"})
+      res.render("produtos/confirmaProdutos", {
+        titulo: "Edição confirmada",
+        tipo: "edicao",
+        produtoAtualizado
+      })
     },
     // Função para deletar um usuario 
     deletarProduto: (req,res) => {

@@ -29,7 +29,7 @@ module.exports = {
       return listaProdutos.find((produtos) => produtos.id == id || null)
      },
 
-      Renovar: (id,{nome, descricao, preco, quantidade, categoria}) => {
+      Renovar: (id,{nome, descricao, preco, quantidade, categoria, imagem}) => {
         //Busca na lista de usuarios, um usuario com aquele id especifico, se achar, pega o index dele e guarda na variavel index
            const index = listaProdutos.findIndex((produtos) => produtos.id == id)
            //se não achar significa que um usuario com aquele index não existe
@@ -37,11 +37,12 @@ module.exports = {
            //se achar subistuir as informações que estavam nele, pelas novas enviadas
            listaProdutos[index] = {
             ...listaProdutos[index],
-            listaProdutos: descricao || listaProdutos[index].descricao,
-            listaProdutos: nome || listaProdutos[index].nome,
-            listaProdutos: preco || listaProdutos[index].preco,
-            listaProdutos: quantidade || listaProdutos[index].quantidade,
-            listaProdutos: categoria || listaProdutos[index].categoria
+            descricao : descricao || listaProdutos[index].descricao,
+            nome: nome || listaProdutos[index].nome,
+            preco: preco || listaProdutos[index].preco,
+            quantidade: quantidade || listaProdutos[index].quantidade,
+            categoria : categoria || listaProdutos[index].categoria,
+            imagem : imagem|| listaProdutos[index].categoria,
            }
            //Retorna usuario atualizado 
            return listaProdutos[index]

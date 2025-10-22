@@ -25,15 +25,16 @@ roteador.post("/cadastrar", userController.salvarUsuario)
 //Retorna as informações de todos os usuarios
 roteador.get("/", userController.listarUsuarios)
 //Retorna as informações de um usuário apenas
+
 roteador.get("/:id", userController.buscarUsuario)
 
 // U = Atualizar um usuario
 
-roteador.put("/:id", userController.atualizarUsuario)
+roteador.post("/:id", userController.atualizarUsuario)
 
 // D = Deletar um usuario
 
-roteador.delete("/:id", userController.deletarUsuario)
+roteador.get("/:id", userController.deletarUsuario)
 
 
 

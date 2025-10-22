@@ -24,11 +24,11 @@ roteador.get("/:id", produtosController.buscarProdutos)
 
 // U = Atualizar um usuario
 
-roteador.put("/:id", produtosController.atualizarProdutos)
+roteador.post("/:id", produtosController.atualizarProdutos)
 
 // D = Deletar um usuario
 
-roteador.delete("/:id", produtosController.deletarProduto)
+roteador.get("/:id", produtosController.deletarProduto)
 
 
 
