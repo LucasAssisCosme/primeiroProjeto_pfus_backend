@@ -14,12 +14,12 @@
 
       <% osProdutos.forEach((produto)=> { %>
         <div class="card" style="width: 18rem;">
-          <img src="<%= produto.imagem %>" class="card-img-top" alt="...">
+          <img style="height: 200px;" src="<%= produto.imagem %>" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">
               <%= produto.nome %>
             </h5>
-            <p class="card-text"> <strong>Descrição:</strong> <%= produto.descricao %></p>
+            <p class="card-text" > <strong>Descrição:</strong> <%= produto.descricao %></p>
             <p class="card-text"> <strong>Tipo:</strong> <%= produto.categoria %></p>
             <p class="card-text"> <strong>Preço:</strong> <%= produto.preco %></p>
             <p class="card-text"> <strong>Quantidade:</strong> <%= produto.quantidade %></p>
