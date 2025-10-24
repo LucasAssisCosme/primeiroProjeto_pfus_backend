@@ -107,12 +107,20 @@ module.exports = {
       const id = req.params.id;
 
       const deletado = userModel.deletar(id)
-
+    
        if(!deletado){
-        return res.status(404).json({mensagem: "Usuário não encontrado"})
+        return res.status(404).render("usuarios/erroUsuario", {
+          titulo: "Erro",
+          mensagem: "Não foi possivel deletar"
+        })
       }
       //se atualizar, manda uma mensagem dizendo que deu certo 
-      res.json({mensagem: "Usuário foi deletado"})
+      res.render("usuarios/confirmacaoUsuario", {
+        titulo: "Deletação confirmada",
+        tipo: "deletar",
+        deletado
+        
+      })
     }
 
 }

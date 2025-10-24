@@ -28,7 +28,7 @@ roteador.post("/:id", produtosController.atualizarProdutos)
 
 // D = Deletar um usuario
 
-roteador.get("/:id", produtosController.deletarProduto)
+roteador.get("/deletar/:id", produtosController.deletarProduto)
 
 
 

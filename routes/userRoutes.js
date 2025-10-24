@@ -34,7 +34,7 @@ roteador.post("/:id", userController.atualizarUsuario)
 
 // D = Deletar um usuario
 
-roteador.get("/:id", userController.deletarUsuario)
+roteador.get("/deletar/:id", userController.deletarUsuario)
 
 
 

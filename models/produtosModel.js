@@ -1,3 +1,4 @@
+const { listarUsuarios } = require("../controllers/userController")
 const db = require("../data/db.json")
 const { deletar } = require("./userModel")
 

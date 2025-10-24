@@ -78,14 +78,22 @@ module.exports = {
     deletarProduto: (req,res) => {
           //Buscar id vindo de url como parametro
       const id = req.params.id;
+    
+     const Apagado = produtosModel.deletar(id)
 
-      const Apagado = produtosModel.deletar(id)
 
        if(!Apagado){
-        return res.status(404).json({mensagem: "Produto não encontrado"})
+        return res.status(404).render("produtos/erroProdutos", {
+           titulo: "Erro",
+          mensagem: "Não foi possivel deletar"
+       })
       }
       //se atualizar, manda uma mensagem dizendo que deu certo 
-      res.json({mensagem: "Produto foi deletado"})
+       res.render("produtos/confirmaProdutos", {
+        titulo: "deletação confirmada",
+         tipo: "deletar",
+         Apagado,
+       })
     }
 
 }
