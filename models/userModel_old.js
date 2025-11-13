@@ -6,8 +6,7 @@ let listaUsuarios = db.usuarios
 
 
 //área nova com conexão ao banco de dados
-//Variavel que importa a conexão com banco
-const conn = require("../config/conexao-banco")
+
 
 
 module.exports = {

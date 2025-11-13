@@ -1,10 +1,8 @@
-
+const { listarUsuarios } = require("../controllers/userController")
 const db = require("../data/db.json")
+const { deletar } = require("./userModel")
 
-
-let listaProdutos = db.produtos 
-
-const conn = require("../config/conexao-banco")
+let listaProdutos = db.produtos
 
 module.exports = {
  guardar: ({nome,  descricao, preco, quantidade, categoria, imagem}) => {
