@@ -13,24 +13,15 @@ module.exports = {
       res.render("produtos/cadastroProduto", {titulo:"Cadastro"})
     },
     //FUnção para levar dados preenchidos para o model realizar o cadastro
-  salvarProduto: (req,res) => {
-        const {nome, descricao, preco, quantidade, categoria, imagem} = req.body
-      produtosModel.guardar({nome, descricao, preco, quantidade, categoria, imagem}, (erro, produtoNovo) => {
-
-        if(erro){
-          return res.render("produtos/erroProduto" , {
-          titulo: "Erro",
-          erro: "Erro ao salvar usuário"
-         })
-        }
-
-        res.render("produtos/confirmaProdutos", {
-          tipo: "cadastro",
-          titulo: "Cadastro confirmado",
-          produtoNovo
-        })
-        })
-      },
+    salvarProduto: (req,res) => {
+      const {nome, descricao, preco, quantidade, categoria, imagem} = req.body
+      produtoNovo = produtosModel.guardar({nome, descricao, preco, quantidade, categoria, imagem})
+      res.render("produtos/confirmaProdutos", {
+        tipo: "cadastro",
+        titulo: "Cadastro confirmado",
+        produtoNovo
+      })
+    },
     // R
     //Função Mostrar os usuarios
     listarProdutos: (req,res) => {

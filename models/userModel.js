@@ -12,60 +12,60 @@ const conn = require("../config/conexao-banco")
 
 module.exports = {
     //Função para validar o login 
-    login : (email, senha) => { 
+    login : (email, senha, callback ) => { 
         //Login
         // Busca a lista de usuarios, se tem aquele usuario com as informações que ele me passou
-        let logado = listaUsuarios.find(
-            (user) => user.email === email && user.senha == senha) || null
+       
+        //VAriavel que guarda consulta sql
+         const sql = `SELECT * FROM usuarios WHERE email = ? AND senha = ?`
 
-            return logado
+     //Valores para consulta sql 
+     const valores = [ email,senha ]
+     //FUnção para executar o sql, fazendo a requisição pro banco
+     conn.query( sql, valores, (erro, resultados) => {
+     // se deu algum erro, retorne o erro para o controller
+          if(erro){
+               return callback(erro, null)
+          }
+          //Se deu certo, retorna o usuario se achou ou null se não achou
+          callback(null, resultados[0] || null)
+     } )
      },
      //Crud
      // Função para cadastro o novo usuario 
      //Ta em chaves por ser um objeto
-     salvar: ({ usuario, email, senha, tipo}) => {
-          const novoUsuario = {
-               id: listaUsuarios.length + 1,
-               usuario,
-               email,
-               senha,
-               tipo
-          }
-          listaUsuarios.push(novoUsuario)
-          console.log("Novo usuario salvo: ", novoUsuario);
-          return novoUsuario
-          
+     salvar: ({ usuario, email, senha, tipo}, callback) => {
+         //Variavel que guarda consulta sql
+         const sql = `INSERT INTO usuarios(usuario,email,senha,tipo)
+         VALUES(?, ?, ?, ?)`
+
+         //Valores para consulta sql 
+     const valores = [ usuario,email,senha,tipo ]
+
+     conn.query( sql, valores, (erro, resultados) => {
+        if(erro){
+          return callback(erro, null)
+        }
+        //variavel que armazena as informações que foram adcionados no banco
+        const novoUsuario = { id:resultados.insertId, usuario,email,senha,tipo }
+        
+     //Função que retorna pr controller
+        callback(null, novoUsuario)
+     } )
      },
      
      //Busca todos os usuarios pelo banco
      listarTodos: () => {
-        return listaUsuarios
      },
      //Buscar usuario especifico pelo banco
      buscarPorid: (id) => {
-      return listaUsuarios.find((user) => user.id == id || null)
+     
      },
 
       atualizar: (id, {usuario, email, senha, tipo} ) => {
-        //Busca na lista de usuarios, um usuario com aquele id especifico, se achar, pega o index dele e guarda na variavel index
-           const index = listaUsuarios.findIndex((user) => user.id == id)
-           //se não achar significa que um usuario com aquele index não existe
-           if(index === -1)  return null 
-           //se achar subistuir as informações que estavam nele, pelas novas enviadas
-           listaUsuarios[index] = {
-            ...listaUsuarios[index],
-            usuario: usuario || listaUsuarios[index].usuario,
-            email: email || listaUsuarios[index].email,
-            senha: senha || listaUsuarios[index].senha,
-            tipo: tipo || listaUsuarios[index].tipo
-           }
-           //Retorna usuario atualizado 
-           return listaUsuarios[index]
+        
       },
       deletar: (id) => {
-           const index = listaUsuarios.findIndex((user) => user.id == id)
-           if(index === -1) return false
-           listaUsuarios.splice(index,1);
-           return true
-      }
+           
     }
+};
