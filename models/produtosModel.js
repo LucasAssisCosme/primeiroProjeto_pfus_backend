@@ -2,19 +2,19 @@
 const conn = require("../config/conexao-banco")
 
 module.exports = {
- guardar: ({nome,  descricao, preco, quantidade, categoria, imagem}, callback) => {
+ guardar: ({nome, categoria, descricao, preco, quantidade, imagemURL}, callback) => {
            //Variavel que guarda consulta sql
-         const sql = `INSERT INTO produtos(nome,descricao,preco,quantidade,categoria,imagem)
+         const sql = `INSERT INTO produtos(nome,categoria,descricao,preco,quantidade,imagemURL)
          VALUES(?, ?, ?, ?, ?,?)`
 
-         const valores = [nome,  descricao, preco, quantidade, categoria, imagem]
+         const valores = [nome, categoria, descricao, preco, quantidade, imagemURL]
 
           conn.query( sql, valores, (erro, resultados) => {
           if(erro){
           return callback(erro, null)
         }
 
-        const novoProduto = { id:resultados.insertId, nome,descricao,preco,quantidade,categoria,imagem }
+        const novoProduto = { id:resultados.insertId, nome, categoria, descricao, preco, quantidade, imagemURL }
 
         callback(null, novoProduto)
      } )
@@ -35,14 +35,35 @@ module.exports = {
      },
      //Buscar usuario especifico pelo banco
      irPorid: (id) => {
+      const sql = `SELECT * FROM  produtos WHERE id = ?`
+            const valores = [ id ]
+            conn.query(sql, valores, (erro, resultado) => {
+
+               if(erro){
+                    return callback(erro, null)
+               }
+               callback(null, resultado[0] || null)
+            })
      },
 
-      Renovar: (id,{nome, descricao, preco, quantidade, categoria, imagem}) => {
+      Renovar: (id,{nome, categoria, descricao, preco, quantidade, imagemURL}, callback) => {
+
+        const sql = `UPDATE produtos
+      SET nome = ?, categoria = ?, decricao = ?, preco = ?, quantidade = ?, imagemURL = ?
+      WHERE id = ?`
+            const valor = [ nome,categoria,descricao,preco,quantidade,imagemURL,id ]
+            conn.query(sql, valor, (erro, resultado) => {
+
+               if(erro){
+                    return callback(erro, null)
+               }
+               callback(null, resultado.affectedRows > 0)
+            })
         
       },
       deletar: (id, callback) => {
             //Variavel sql que guarda a consulta desejada
-                 const sql = `DELETE FROM usuarios WHERE id = ?`
+                 const sql = `DELETE FROM produtos WHERE id = ?`
                  const valor = [id]
              //Executar o comando no banco
              conn.query(sql, valor, (erro, resultado) => {

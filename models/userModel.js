@@ -2,7 +2,7 @@
 const conn = require("../config/conexao-banco")
 
 
-moudle.exports = {
+module.exports = {
      
    //Login
    login: (email, senha, callback) => {
@@ -57,13 +57,37 @@ moudle.exports = {
         })
    },
 
-   //Atualizar = UPTADE
+   //Atualizar = UPDATE
    //Buscar usuario
-   buscarPorid: () => {
+   buscarPorid: (id, callback) => {
+            const sql = `SELECT * FROM  usuarios WHERE id = ?`
+            const valor = [ id ]
+            conn.query(sql, valor, (erro, resultado) => {
 
+               if(erro){
+                    return callback(erro, null)
+               }
+               callback(null, resultado[0] || null)
+            })
+            
    },
    //Atualizar informações
-   atualizar: () => {
+   atualizar: (id,{usuario,email,senha,tipo}, callback) => {
+        //Variavel sql que guarda a consulta desejada
+     const sql = `UPDATE usuarios
+      SET usuario = ?, email = ?, senha = ?, tipo = ?
+      WHERE id = ?
+      `
+     //Variavel com informação oculta/misteriosa
+            const valor = [usuario, email,senha,tipo, id]
+             //Executar o comando no banco
+            conn.query(sql, valor, (erro, resultado) => {
+
+               if(erro){
+                    return callback(erro, null)
+               }
+               callback(null, resultado.affectedRows > 0)
+            })
 
    },
    //Deletar = DELETAR
