@@ -36,7 +36,7 @@ app.use(express.static('public'))
 
 //Rota de pagina inicial
 app.get("/home", (req,res) => {
-   res.render("index", {titulo: "Logado"})
+   res.render("login", {titulo: "Logado"})
 })
 //Rota inicial do projeto
 app.get("/", (req,res) => {

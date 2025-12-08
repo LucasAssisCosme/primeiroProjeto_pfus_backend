@@ -73,7 +73,7 @@ module.exports = {
    const id = req.params.id;
    const{nome,descricao,categoria,preco, quantidade, imagemURL } = req.body;
  
-   userModel.atualizar(id,{nome,descricao,categoria,preco, quantidade, imagemURL }, (erro, sucesso) => {
+   produtosModel.Renovar(id,{nome,descricao,categoria,preco, quantidade, imagemURL }, (erro, sucesso) => {
  
      if (erro || !sucesso) {
        return res.status(500).render("produtos/erroProdutos", {
@@ -82,7 +82,7 @@ module.exports = {
        });
      }
  
-     res.render("produtos/editarProdutos", {
+     res.render("produtos/confirmaProdutos", {
        tipo: "edicao",
        titulo: "Edição confirmada"
      });
