@@ -34,14 +34,13 @@ app.set("views", path.join(__dirname, "views"))
 
 app.use(express.static('public'))
 
-//Manda a pessoa para o index.ejs com /home
+//Rota de pagina inicial
 app.get("/home", (req,res) => {
-    res.status(200)
-    res.render("index", { titulo: "Pagina inicial"})
+   res.render("index", {titulo: "Logado"})
 })
 //Rota inicial do projeto
 app.get("/", (req,res) => {
-    res.status(200).render("index", { titulo: "Pagina inicial"})
+    res.render("login", { titulo: "Login"})
 })
 // caso digite uma rota que não existe, leva para 404.ejs
 app.use((req, res) => {

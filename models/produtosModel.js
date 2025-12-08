@@ -34,22 +34,24 @@ module.exports = {
 
      },
      //Buscar usuario especifico pelo banco
-     irPorid: (id) => {
-      const sql = `SELECT * FROM  produtos WHERE id = ?`
-            const valores = [ id ]
-            conn.query(sql, valores, (erro, resultado) => {
+    irPorid: (id, callback) => {
+  const sql = `SELECT * FROM produtos WHERE id = ?`
+  const valores = [ id ]
+  
+  conn.query(sql, valores, (erro, resultado) => {
+    
+    if(erro){
+      return callback(erro, null)
+    }
+    callback(null, resultado[0] || null)
+  })
+},
 
-               if(erro){
-                    return callback(erro, null)
-               }
-               callback(null, resultado[0] || null)
-            })
-     },
 
       Renovar: (id,{nome, categoria, descricao, preco, quantidade, imagemURL}, callback) => {
 
         const sql = `UPDATE produtos
-      SET nome = ?, categoria = ?, decricao = ?, preco = ?, quantidade = ?, imagemURL = ?
+      SET nome = ?, categoria = ?, descricao = ?, preco = ?, quantidade = ?, imagemURL = ?
       WHERE id = ?`
             const valor = [ nome,categoria,descricao,preco,quantidade,imagemURL,id ]
             conn.query(sql, valor, (erro, resultado) => {

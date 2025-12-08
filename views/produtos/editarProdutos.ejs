@@ -3,49 +3,49 @@
     <!-- conteudo do index -->
     <main class="container d-flex flex-column flex-fill justify-content-center">
         <h1 class="text-center">PAGINA DE EDITAR PRODUTOS</h1>
-        <form action="/produtos/ <%= aquelesProdutos.id  %>" method="POST">
+        <form action="/produtos/ <%= produto.id  %>" method="POST">
             <div class="mb-3">
                 <!-- caixinha nome de usuario -->
                 <label for="inputName" class="form-label fs-2 mt-2">
                     Produto
                 </label>
                 <input type="text" id="inputNome" class="form-control form-control-lg" placeholder="Digite um produto"
-                    name="nome" required value= <%= aquelesProdutos.nome %>>
+                    name="nome" required value= <%= produto.nome %>>
 
                 <label for="inputDescricao" class="form-label fs-2 mt-2">
                     Descrição
                 </label>
                 <input type="text" id="inputDescricao" class="form-control form-control-lg"
-                    placeholder="Digite uma descrição" name="descricao" required value= <%= aquelesProdutos.descricao %>>
+                    placeholder="Digite uma descrição" name="descricao" required value= <%= produto.descricao %>>
                 <div class="row">
                     <div class="col-md-6">
                         <label class="form-label fs-2 mt-2">
                             Tipo produto
                         </label>
                         <select name="categoria" class="form-select form-select-lg">
-                            <option value="Alimentos"  <%= aquelesProdutos.categoria === "Alimentos" ? "selected" : "" %>>Alimentos</option>
-                            <option value="Brinquedos" <%= aquelesProdutos.categoria === "Brinquedos" ? "selected" : "" %>>Brinquedos</option>
-                            <option value="Futebol" <%= aquelesProdutos.categoria === "Futebol" ? "selected" : "" %>> Futebol</option>
+                            <option value="Alimentos"  <%= produto.categoria === "Alimentos" ? "selected" : "" %>>Alimentos</option>
+                            <option value="Brinquedos" <%= produto.categoria === "Brinquedos" ? "selected" : "" %>>Brinquedos</option>
+                            <option value="Futebol" <%= produto.categoria === "Futebol" ? "selected" : "" %>> Futebol</option>
                         </select>
                         <label for="inputPreco" class="form-label fs-2 mt-2">
                             Preço
                         </label>
                         <input type="number" id="inputPreco" class="form-control form-control-lg"
-                            placeholder="Digite um Preço" name="preco" required value= <%= aquelesProdutos.preco %>>
+                            placeholder="Digite um Preço" name="preco" required value= <%= produto.preco %>>
                         <label for="inputQuantidade" class="form-label fs-2 mt-2">
                             Quantidade
                         </label>
                         <input type="number" id="inputQuantidade" class="form-control form-control-lg"
-                            placeholder="Digite uma Quantidade" name="quantidade" required value= <%= aquelesProdutos.quantidade %>>
+                            placeholder="Digite uma Quantidade" name="quantidade" required value= <%= produto.quantidade %>>
                     </div>
                     <div class="col-md-6">
                         <label for="inputImagem" class="form-label fs-2 mt-2">
                             Imagem produto
                         </label>
                         <input type="url" id="inputImagem" class="form-control form-control-lg"
-                            placeholder="Digite o link da imagem" name="imagem" required value= <%= aquelesProdutos.imagem %>>
+                            placeholder="Digite o link da imagem" name="imagem" required value= <%= produto.imagem %>>
                         <img style="height: 200px; width: 200px;" class="d-flex mx-auto mt-3" id="previewImagem"
-                            src=<%= aquelesProdutos.imagem  %>
+                            src=<%= produto.imagem  %>
                             alt="">
                         </div>
                     </div>

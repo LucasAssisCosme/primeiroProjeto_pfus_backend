@@ -10,11 +10,11 @@
       </button>
     </a>
     <div class="d-flex flex-wrap flex-row gap-3 mt-5">
-    <% if (osProdutos && osProdutos.length> 0) { %>
+    <% if (produtos && produtos.length> 0) { %>
 
-      <% osProdutos.forEach((produto)=> { %>
+      <% produtos.forEach((produto)=> { %>
         <div class="card" style="width: 18rem;">
-          <img style="height: 200px;" src="<%= produto.imagem %>" class="card-img-top" alt="...">
+          <img style="height: 200px;" src="<%= produto.imagemURL %>" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">
               <%= produto.nome %>
