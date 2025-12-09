@@ -52,7 +52,7 @@ module.exports = {
       const {usuario,email,senha,tipo } = req.body
      
       //Manda as informações para o model
-      userModel.salvar({usuario,email,senha,tipo }, (erro, usuarioNovo) => {
+      userModel.salvar({usuario,email,senha,tipo }, (erro, novoUsuario) => {
             //se deu erro, renderiza a mensagem de erro mostrando a mensagem
             if(erro){
               return res.status(500).render("usuarios/erroUsuario", {
@@ -62,10 +62,10 @@ module.exports = {
             }
 
             //Se deu certo renderiza a pagina de confirmação 
-            res.render("usuarios/confirmacaoUsuarios", {
+            res.render("usuarios/confirmacaoUsuario", {
               titulo: "Cadastro confirmado",
               tipo: "cadastro",
-              usuarioNovo
+              novoUsuario
             })
       })
   },
@@ -115,9 +115,9 @@ module.exports = {
   const id = req.params.id;
   const { usuario, email, senha, tipo } = req.body;
 
-  userModel.atualizar(id, { usuario, email, senha, tipo }, (erro, sucesso) => {
+  userModel.atualizar(id, { usuario, email, senha, tipo }, (erro, atualizado) => {
 
-    if (erro || !sucesso) {
+    if (erro || !atualizado) {
       return res.status(500).render("usuarios/erroUsuario", {
         titulo: "erro",
         mensagem: "Erro ao atualizar usuario"
@@ -126,7 +126,8 @@ module.exports = {
 
     res.render("usuarios/confirmacaoUsuario", {
       tipo: "edicao",
-      titulo: "Edição confirmada"
+      titulo: "Edição confirmada",
+      atualizado
     });
 
   });
@@ -147,11 +148,12 @@ module.exports = {
             })
           }
 
+          const deletado = { usuario: "Selecionado"}
           //Renderiza a tela de sucesso
           res.render("usuarios/confirmacaoUsuario", {
             tipo: "excluir",
             titulo: "usuario deletado",
-            sucesso
+           deletado
           })
      })
   }

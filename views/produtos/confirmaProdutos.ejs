@@ -14,12 +14,12 @@
     <% } else if(tipo == "edicao") { %> 
       <h1 class="text-white">
         <!-- Pega o nome de quem foi atualizado, vindo do objeto atualizado -->
-        Edição de <%-  %> realizado
+        Edição de <%- atualizado.nome %> realizado
     </h1>
        <!-- se a pagina que chamou for a de deletado, mostra que o usuario foi deletado -->
     <% } else { %>     <h1 class="text-white">
        
-     Exclusão <%- Apagado.nome %> realizada
+     Exclusão <%- deletado.produto %> realizada
      </h1>
        <% }  %> 
        <!-- criando botoes que leva para outra paginas -->

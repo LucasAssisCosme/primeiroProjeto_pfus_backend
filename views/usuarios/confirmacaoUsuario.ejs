@@ -8,13 +8,13 @@
     <% if (tipo == "cadastro") { %>
      <h1 class="text-white">
         <!-- Pega o nome de quem foi cadastrado, vindo do objeto usuarioNovo -->
-        Cadastro de <%- usuarioNovo.usuario %> realizado
+        Cadastro de <%- novoUsuario.usuario %> realizado
     </h1>
          <!-- se a pagina que chamou for a de edição, mostra que o usuario foi editado -->
     <% } else if(tipo == "edicao") { %> 
       <h1 class="text-white">
         <!-- Pega o nome de quem foi atualizado, vindo do objeto atualizado -->
-        Edição de <%-   %> realizado
+        Edição de <%-  atualizado.usuario  %> realizado
     </h1>
        <!-- se a pagina que chamou for a de deletado, mostra que o usuario foi deletado -->
     <% } else { %>     <h1 class="text-white">

@@ -28,7 +28,7 @@ module.exports = {
    //Criar = CREATE
    salvar: ({usuario, email, senha, tipo} ,callback ) => {
         //Variavel sql que guarda a consulta desejada
-        const sql = `INSERT INTO usuario(usuario,email,senha,tipo) VALUES(?,?,?,?) `
+        const sql = `INSERT INTO usuarios (usuario,email,senha,tipo) VALUES(?,?,?,?) `
 
         // Valores que serão utilizados na consulta
         const valores = [usuario,email,senha,tipo]
@@ -74,19 +74,27 @@ module.exports = {
    //Atualizar informações
    atualizar: (id,{usuario,email,senha,tipo}, callback) => {
         //Variavel sql que guarda a consulta desejada
-     const sql = `UPDATE usuarios
+    
+      //criar um objeto para retronar para o usuario 
+     
+    
+        const sql = `UPDATE usuarios
       SET usuario = ?, email = ?, senha = ?, tipo = ?
       WHERE id = ?
       `
      //Variavel com informação oculta/misteriosa
-            const valor = [usuario, email,senha,tipo, id]
+            const valores = [usuario, email,senha,tipo, id]
+
+             const atualizado = {
+          usuario: valores[0] 
+      }
              //Executar o comando no banco
-            conn.query(sql, valor, (erro, resultado) => {
+            conn.query(sql, valores, (erro, resultado) => {
 
                if(erro){
                     return callback(erro, null)
                }
-               callback(null, resultado.affectedRows > 0)
+               callback(null, atualizado)
             })
 
    },

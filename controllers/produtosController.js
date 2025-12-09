@@ -53,12 +53,14 @@ module.exports = {
             //Se deu erro na busca, informar
             //ou se não achou usuario
               if(erro || !produto){
-                return res.status(500).render("produtos/erroProduto", {
+                return res.status(500).render("produtos/erroProdutos", {
                   titulo: "erro",
                   mensagem: "Erro ao buscar produto"
                 })
               }
-    
+              
+              console.log(produto);
+              
               //Se achou usuario, renderiza pagina de ediçõa
               res.render("produtos/editarProdutos", {
                 titulo: "Edição", 
@@ -73,9 +75,9 @@ module.exports = {
    const id = req.params.id;
    const{nome,descricao,categoria,preco, quantidade, imagemURL } = req.body;
  
-   produtosModel.Renovar(id,{nome,descricao,categoria,preco, quantidade, imagemURL }, (erro, sucesso) => {
+   produtosModel.Renovar(id,{nome,descricao,categoria,preco, quantidade, imagemURL }, (erro, atualizado) => {
  
-     if (erro || !sucesso) {
+     if (erro || !atualizado) {
        return res.status(500).render("produtos/erroProdutos", {
          titulo: "erro",
          mensagem: "Erro ao atualizar produto"
@@ -84,14 +86,15 @@ module.exports = {
  
      res.render("produtos/confirmaProdutos", {
        tipo: "edicao",
-       titulo: "Edição confirmada"
+       titulo: "Edição confirmada", 
+       atualizado
      });
  
    });
  
  },
   //deletar
-  deletarProduto: () => {
+  deletarProduto: (req,res) => {
          const id = req.params.id
       
            //Acessar model e solicitar a exclusão do usuario
@@ -104,10 +107,12 @@ module.exports = {
                   })
                 }
       
+                const deletado = { produto: "Selecionado"}
                 //Renderiza a tela de sucesso
-                res.render("produtos/erroProdutos", {
+                res.render("produtos/confirmaProdutos", {
                   tipo: "excluir",
-                  titulo: "usuario deletado"
+                  titulo: "produto deletado",
+                  deletado
                 })
            })
   }

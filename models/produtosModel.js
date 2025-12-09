@@ -50,16 +50,24 @@ module.exports = {
 
       Renovar: (id,{nome, categoria, descricao, preco, quantidade, imagemURL}, callback) => {
 
+
+       
+         
         const sql = `UPDATE produtos
       SET nome = ?, categoria = ?, descricao = ?, preco = ?, quantidade = ?, imagemURL = ?
       WHERE id = ?`
-            const valor = [ nome,categoria,descricao,preco,quantidade,imagemURL,id ]
-            conn.query(sql, valor, (erro, resultado) => {
+            const valores = [ nome,categoria,descricao,preco,quantidade,imagemURL,id ]
+
+             const atualizado = {
+          nome: valores[0]
+        }
+
+            conn.query(sql, valores, (erro, resultado) => {
 
                if(erro){
                     return callback(erro, null)
                }
-               callback(null, resultado.affectedRows > 0)
+               callback(null, atualizado)
             })
         
       },
